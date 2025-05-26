@@ -1,0 +1,13 @@
+<%- include('partials/header', { pageTitle: "Oшибкa ", error}) %>
+<main>
+    ВНИМАНИЕ!!! <br>
+    ОШИБКА <%= error %> !!! <br>    
+</main>
+
+<img src="/error.jpg" alt="Внимание ошибка">
+
+<p>
+    <%= message %>
+</p>
+
+<%- include('partials/footer') %>

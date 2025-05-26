@@ -1,0 +1,46 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Consolas', monospace;
+    background-color: #f8c3cd; 
+}
+
+/* Если нужно, чтобы фон занимал всю страницу */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Для всех текстовых элементов */
+p, h1, h2, h3, h4, h5, h6, a, li, span, div {
+    font-family: 'Consolas', monospace;
+}
+
+table {
+    width: 20%;
+    border-collapse: collapse; /* Убирает двойные границы */
+    background-color: rgb(105, 185, 238);   /* Белый фон для таблицы */
+    margin: 20px 0;            /* Отступы сверху и снизу */
+}
+
+th, td {
+    border: 1px solid #000000;    /* Границы ячеек */
+    padding: 8px;              /* Внутренние отступы */
+    text-align: left;          /* Выравнивание текста */
+}
+
+th {
+    background-color: rgb(40, 156, 234); /* Серый фон для заголовков */
+    font-weight: bold;         /* Жирный шрифт */
+}
+
+img {
+    width: 500px;   /* Ширина */
+}
+
+input, textarea, button, select {
+    font-family: 'Consolas', monospace;
+}

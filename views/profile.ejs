@@ -1,0 +1,35 @@
+<%- include('partials/header', { pageTitle: "Профиль"}) %>
+    <main>
+        Добро пожаловать, <%= user.name %>!
+    </main>
+    <form method="POST" action="/logout">  
+        <button type="submit">Выйти</button>
+    </form>
+
+    <main>
+        Желаете сменить пароль, <%= user.name %>?
+    </main>
+    <form action="/update-password?_method=PUT" method="POST">
+        
+        <div>
+            <label>Новый пароль:</label>
+            <input type="password" name="newPassword" required>
+        </div>
+        <button type="submit">смена пароля</button>
+    </form>
+
+    <% if (success === "1") { %>
+        <p style="color: green;">Неожиданный успех</p>
+    <% } %>
+    
+    <form action="/delete-user?_method=DELETE" method="POST">
+        
+        <div>
+            <label>
+                Надоело жить ? <br>
+                Быть можешь тогда удалишь себя ?
+            </label>
+        </div>
+        <button type="submit">Удалить</button>
+    </form>
+<%- include('partials/footer') %>

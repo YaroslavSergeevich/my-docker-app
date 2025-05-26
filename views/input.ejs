@@ -1,0 +1,25 @@
+<%- include('partials/header', { pageTitle: "Страница с вводом текста"}) %>
+<main>
+    Тут страница с вводом текста
+</main>
+
+<p>
+    Поле ввода
+</p>
+
+<form action="/inputData" method="POST">
+    <input type="text"
+    name="input_box"
+    placeholder="Введи что-нибудь сюда">
+
+    <button type="submit">Отправить</button>
+</form>
+
+<% if (success) 
+{ %>
+    <br> <div style="color: green; padding: 10px; border: 1px solid green;">
+        Данные успешно сохранены!
+    </div>
+<% }  %>
+
+<%- include('partials/footer') %>

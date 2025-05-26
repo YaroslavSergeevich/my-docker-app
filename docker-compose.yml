@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: db_user_password
+      POSTGRES_DB: my_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app_user -d my_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build: .
+    expose:
+      - "8080"
+    environment:
+      DB_HOST: db
+      DB_NAME: my_db
+      DB_USER: app_user
+      DB_PASSWORD: db_user_password
+      SESSION_SECRET: bombardeiro_crocodilo
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./logs:/app/logs
+      - ./sessions:/app/sessions
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://localhost:8080 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  loadbalancer:
+    image: nginx:alpine
+    ports:
+      - "8080:80"  # Публикуем только порт балансировщика
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - web
+
+volumes:
+  postgres_data:

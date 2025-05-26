@@ -1,0 +1,17 @@
+<%- include('partials/header', { pageTitle: "Регистрация"}) %>
+    <% if (typeof error !== 'undefined') { %>
+        <p style="color: red;"><%= error %></p>
+    <% } %>
+    <form action="/registr" method="POST">
+        <div>
+            <label>Имя пользователя:</label>
+            <input type="text" name="name" required>
+        </div>
+        <div>
+            <label>Пароль:</label>
+            <input type="password" name="password" required>
+        </div>
+        <button type="submit">Регистрация</button>
+    </form>
+    <p>Уже есть аккаунт? Не тупи, тебе не сюда</p>
+<%- include('partials/footer') %>
