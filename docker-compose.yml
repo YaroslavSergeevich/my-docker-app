@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   db:
     image: postgres:13
@@ -16,6 +14,8 @@ services:
       retries: 5
 
   web:
+    image: ysergeevich/my-project:latest  # Совпадает с tags в workflow
+    restart: unless-stopped
     build: .
     expose:
       - "8080"
@@ -46,5 +46,14 @@ services:
     depends_on:
       - web
 
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_POLL_INTERVAL=30  # Проверка каждые 30 секунд
+    restart: unless-stopped
+
 volumes:
   postgres_data:
+
