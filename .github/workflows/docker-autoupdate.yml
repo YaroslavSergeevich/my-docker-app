@@ -23,4 +23,4 @@ jobs:
           context: .
           push: true
           tags: |
-            твой_логин_docker/название_образа:latest
+            ysergeevich/my-project:latest
